@@ -49,8 +49,8 @@ h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text); text-align: cen
 .faq details { margin-bottom: 0.75rem; background: white; padding: 1rem 1.25rem; border-radius: 8px; border: 1px solid var(--border); box-shadow: var(--shadow); transition: all 0.2s ease; }
 .faq details:hover { box-shadow: var(--shadow-hover); }
 .faq summary { font-weight: 500; cursor: pointer; color: var(--text); }
-footer { background: #f8f9fa; color: var(--text-secondary); padding: 2.5rem 0 1.25rem; text-align: center; border-top: 1px solid var(--border); }
-footer a { color: var(--google-blue); }
+footer { background: #f8f9fa; color: var(--text-secondary); padding: 1.1rem 0; border-top: 1px solid var(--border); }
+footer a { color: inherit; }
 .page-hero { background: #f8f9fa; padding: 3.5rem 0 2.5rem; text-align: center; border-bottom: 1px solid var(--border); }
 .page-hero h1 { font-size: 2.25rem; font-weight: 400; }
 .content { max-width: 800px; margin: 0 auto; }
@@ -73,7 +73,13 @@ button[type=submit]:hover { background: var(--google-blue-dark); transform: tran
 .thank-you-mark { width: 52px; height: 52px; margin: 0 auto 1rem; border-radius: 50%; background: #e8f0fe; color: var(--google-blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; }
 .thank-you h2 { font-size: 1.55rem; margin-bottom: 0.6rem; font-weight: 500; }
 .thank-you p { color: var(--text-secondary); max-width: 420px; margin: 0 auto; }
-.site-credit { margin-top: 1rem; }
-.site-credit a { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; }
+.footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+.footer-copy { margin: 0; font-size: 0.9rem; }
+.site-credit { margin: 0; }
+.site-credit a { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; white-space: nowrap; }
 .site-credit a:hover { color: var(--google-blue); }
 .site-credit img { width: 22px; height: 22px; border-radius: 50%; display: block; }
+@media (max-width: 640px) {
+  .footer-bar { gap: 0.75rem; }
+  .site-credit a { white-space: normal; }
+}
