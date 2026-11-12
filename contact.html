@@ -59,11 +59,14 @@
         <div class="form-group"><label for="message">What should we know</label><textarea id="message" name="message" rows="5" required placeholder="What happened, and what you need."></textarea></div>
         <button type="submit">Request Case Review</button>
       </form>
-      <div id="thank-you" class="thank-you" hidden>
-        <div class="thank-you-mark" aria-hidden="true">&#10003;</div>
-        <h2>Your request is under review</h2>
-        <p>We will be getting back to you shortly.</p>
-      </div>
+      <dialog id="thank-you" class="thanks-pop" aria-labelledby="thanks-title">
+        <div class="thanks-card">
+          <div class="thank-you-mark" aria-hidden="true">&#10003;</div>
+          <h2 id="thanks-title">Thank you</h2>
+          <p>Your request is being reviewed. Our team will reach out soon.</p>
+          <button type="button" class="thanks-close" id="thanks-close">Close</button>
+        </div>
+      </dialog>
       <p id="form-error" class="form-error" hidden>The form could not be sent. Email farber.inc@gmail.com and we will review the case.</p>
       <p id="form-note" class="form-note">We reply within one business day. Or email <a href="mailto:farber.inc@gmail.com">farber.inc@gmail.com</a>.</p>
       <script>
@@ -72,10 +75,18 @@
           var thanks = document.getElementById("thank-you");
           var note = document.getElementById("form-note");
           function showThanks() {
-            form.hidden = true;
-            if (note) note.hidden = true;
-            thanks.hidden = false;
+            var err = document.getElementById("form-error");
+            if (err) err.hidden = true;
+            if (typeof thanks.showModal === "function") thanks.showModal();
+            else thanks.setAttribute("open", "");
+            var btn = form.querySelector("button[type=submit]");
+            if (btn) { btn.disabled = false; btn.textContent = "Request Case Review"; }
+            form.reset();
           }
+          document.getElementById("thanks-close").addEventListener("click", function () {
+            if (typeof thanks.close === "function") thanks.close();
+            else thanks.removeAttribute("open");
+          });
           if (new URLSearchParams(location.search).get("thanks") === "1") showThanks();
           form.addEventListener("submit", function (e) {
             if (!form.checkValidity()) return;
