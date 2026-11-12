@@ -8,7 +8,6 @@
   <meta name="description" content="Request a specialist diagnostic for your Google Business Profile. Short form: business name, city, issue type, urgency.">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="module" src="https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js"></script>
 </head>
 <body>
   <header>
@@ -50,7 +49,6 @@
         </div>
         <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="4" required></textarea></div>
         <div class="form-group"><label for="email">Email</label><input id="email" type="email" name="email" required></div>
-        <altcha-widget id="security-check" challengeurl="https://www.staticforms.dev/api/altcha/challenge?apiKey=sf_c49289756d9e68bedab13963" hidefooter="true"></altcha-widget>
         <button type="submit">Request Case Review</button>
       </form>
       <div id="thank-you" class="thank-you" hidden>
@@ -80,19 +78,6 @@
             var payload = {};
             new FormData(form).forEach(function (v, k) { payload[k] = v; });
             if (payload.email) payload.replyTo = payload.email;
-            var widget = document.getElementById("security-check");
-            var token = payload.altcha || payload.altchaToken || (widget && widget.value) || "";
-            if (!token) {
-              btn.disabled = false;
-              btn.textContent = "Request Case Review";
-              var need = document.getElementById("form-error");
-              if (need) {
-                need.hidden = false;
-                need.textContent = "Complete the security check, then send the form again.";
-              }
-              return;
-            }
-            payload.altcha = token;
             fetch("https://api.staticforms.dev/submit", {
               method: "POST",
               headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -104,7 +89,10 @@
               btn.disabled = false;
               btn.textContent = "Request Case Review";
               var err = document.getElementById("form-error");
-              if (err) err.hidden = false;
+              if (err) {
+                err.hidden = false;
+                err.textContent = "The form could not be sent. Email farber.inc@gmail.com and we will review the case.";
+              }
             });
           });
         })();
