@@ -115,3 +115,4 @@ footer a.retainer-link:hover { background: #0E2A47; color: #fff; }
   body { background: #fff; }
   a { color: inherit; }
 }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
