@@ -116,3 +116,4 @@ footer a.retainer-link:hover { background: #0E2A47; color: #fff; }
   a { color: inherit; }
 }
 .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+altcha-widget { display: block; margin: 0.35rem 0 1rem; max-width: 100%; }
