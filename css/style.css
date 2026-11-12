@@ -1,9 +1,9 @@
 :root {
-  --google-blue: #4285F4;
-  --google-blue-dark: #1a73e8;
-  --google-red: #EA4335;
-  --google-yellow: #FBBC05;
-  --google-green: #34A853;
+  --google-blue: #0E2A47;
+  --google-blue-dark: #091C30;
+  --google-red: #8C3A32;
+  --google-yellow: #C6A15B;
+  --google-green: #2F6F56;
   --text: #202124;
   --text-secondary: #5f6368;
   --bg: #ffffff;
@@ -13,7 +13,7 @@
   --shadow-hover: 0 4px 8px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); }
+body { font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); }
 a { color: var(--google-blue); text-decoration: none; }
 a:hover { color: var(--google-blue-dark); }
 .container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
@@ -72,7 +72,7 @@ button[type=submit]:hover { background: var(--google-blue-dark); transform: tran
 
 .thank-you { background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); padding: 2.5rem 1.75rem; text-align: center; }
 .thank-you[hidden] { display: none !important; }
-.thank-you-mark { width: 52px; height: 52px; margin: 0 auto 1rem; border-radius: 50%; background: #e8f0fe; color: var(--google-blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; }
+.thank-you-mark { width: 52px; height: 52px; margin: 0 auto 1rem; border-radius: 50%; background: #E7EEF3; color: var(--google-blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; }
 .thank-you h2 { font-size: 1.55rem; margin-bottom: 0.6rem; font-weight: 500; }
 .thank-you p { color: var(--text-secondary); max-width: 420px; margin: 0 auto; }
 .footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
@@ -85,3 +85,5 @@ button[type=submit]:hover { background: var(--google-blue-dark); transform: tran
   .footer-bar { gap: 0.75rem; }
   .site-credit a { white-space: normal; }
 }
+
+.disclaimer { margin: 0.7rem 0 0; font-size: 0.78rem; line-height: 1.45; color: var(--text-secondary); max-width: 820px; }
