@@ -22,7 +22,7 @@ header { background: #fff; border-bottom: 1px solid var(--border); padding: 0.75
 .nav-left { display: flex; align-items: center; gap: 1.75rem; min-width: 0; }
 .logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 500; font-size: 1.25rem; color: var(--text); white-space: nowrap; }
 .logo:hover { color: var(--text); }
-.logo img { height: 40px; width: 40px; display: block; }
+.logo img { height: 40px; width: auto; display: block; }
 nav ul { display: flex; list-style: none; gap: 1.75rem; }
 nav a { color: var(--text-secondary); font-weight: 500; font-size: 0.95rem; }
 nav a:hover { color: var(--google-blue); }
