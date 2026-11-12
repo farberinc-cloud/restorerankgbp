@@ -20,11 +20,15 @@
   <section class="page-hero"><div class="container"><h1>Request a Case Review</h1><p>Short diagnostic form. No obligation.</p></div></section>
   <section>
     <div class="container" style="max-width:600px;">
-      <form action="mailto:farber.inc@gmail.com" method="post" enctype="text/plain">
-        <div class="form-group"><label>Business Name</label><input type="text" name="Business Name" required></div>
-        <div class="form-group"><label>City / Service Area</label><input type="text" name="City" required></div>
-        <div class="form-group"><label>Issue Type</label>
-          <select name="Issue Type" required>
+      <form id="case-form" action="https://formsubmit.co/farber.inc@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="RestoreRankGBP — Case Review">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://restorerankgbp.com/contact.html?thanks=1">
+        <div class="form-group"><label for="business">Business Name</label><input id="business" type="text" name="Business Name" required></div>
+        <div class="form-group"><label for="city">City / Service Area</label><input id="city" type="text" name="City" required></div>
+        <div class="form-group"><label for="issue">Issue Type</label>
+          <select id="issue" name="Issue Type" required>
             <option value="">Select...</option>
             <option>Suspended / Restricted Profile</option>
             <option>Want to Rank Higher</option>
@@ -33,20 +37,53 @@
             <option>Other</option>
           </select>
         </div>
-        <div class="form-group"><label>Urgency</label>
-          <select name="Urgency">
+        <div class="form-group"><label for="urgency">Urgency</label>
+          <select id="urgency" name="Urgency">
             <option>Standard</option>
             <option>High — losing revenue daily</option>
             <option>Critical</option>
           </select>
         </div>
-        <div class="form-group"><label>Brief Description (optional)</label><textarea name="Description" rows="4"></textarea></div>
-        <div class="form-group"><label>Your Email</label><input type="email" name="Email" required></div>
+        <div class="form-group"><label for="details">Brief Description (optional)</label><textarea id="details" name="Description" rows="4"></textarea></div>
+        <div class="form-group"><label for="email">Your Email</label><input id="email" type="email" name="Email" required></div>
         <button type="submit">Request Case Review</button>
       </form>
-      <p style="margin-top:1.5rem; font-size:0.95rem; color:var(--gray);">We typically respond within one business day. Or email directly: farber.inc@gmail.com</p>
+      <div id="thank-you" class="thank-you" hidden>
+        <div class="thank-you-mark" aria-hidden="true">&#10003;</div>
+        <h2>Your request is under review</h2>
+        <p>We will be getting back to you shortly.</p>
+      </div>
+      <p id="form-note" style="margin-top:1.5rem; font-size:0.95rem; color:var(--text-secondary);">We typically respond within one business day. Or email directly: farber.inc@gmail.com</p>
+      <script>
+        (function () {
+          var form = document.getElementById("case-form");
+          var thanks = document.getElementById("thank-you");
+          var note = document.getElementById("form-note");
+          function showThanks() {
+            form.hidden = true;
+            if (note) note.hidden = true;
+            thanks.hidden = false;
+          }
+          if (new URLSearchParams(location.search).get("thanks") === "1") showThanks();
+          form.addEventListener("submit", function (e) {
+            if (!form.checkValidity()) return;
+            e.preventDefault();
+            var btn = form.querySelector("button");
+            btn.disabled = true;
+            btn.textContent = "Sending…";
+            var payload = {};
+            new FormData(form).forEach(function (v, k) { payload[k] = v; });
+            fetch("https://formsubmit.co/ajax/farber.inc@gmail.com", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "Accept": "application/json" },
+              body: JSON.stringify(payload)
+            }).catch(function () {}).finally(showThanks);
+          });
+        })();
+      </script>
     </div>
   </section>
-  <footer><div class="container"><p>&copy; 2026 RestoreRankGBP · <a href="index.html">Home</a></p></div></footer>
+  <footer><div class="container"><p>&copy; 2026 RestoreRankGBP · <a href="index.html">Home</a></p></div>    <p class="site-credit"><a href="https://farberinc.media/" target="_blank" rel="noopener noreferrer"><img src="images/farber-favicon.png" alt="Farber Inc" width="22" height="22">Site created by Farberinc.media</a></p>
+  </footer>
 </body>
 </html>
