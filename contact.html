@@ -84,14 +84,20 @@
             btn.disabled = true;
             btn.textContent = "Sending…";
             var payload = {};
-            new FormData(form).forEach(function (v, k) { payload[k] = v; });
+            new FormData(form).forEach(function (v, k) {
+              if (k === "redirectTo" || k === "honeypot") return;
+              payload[k] = v;
+            });
             if (payload.email) payload.replyTo = payload.email;
             fetch("https://api.staticforms.dev/submit", {
               method: "POST",
-              headers: { "Content-Type": "application/json", "Accept": "application/json" },
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload)
             }).then(function (res) {
               if (!res.ok) throw new Error("fail");
+              return res.json().catch(function () { return { success: true }; });
+            }).then(function (data) {
+              if (data && data.success === false) throw new Error("fail");
               showThanks();
             }).catch(function () {
               btn.disabled = false;
