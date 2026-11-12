@@ -1,4 +1,15 @@
 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RestoreRankGBP">
-  <rect x="2" y="2" width="44" height="44" rx="10" fill="#0E2A47"/>
-  <path d="M15 13h14.2a7 7 0 0 1 0 14H19.2V35H15V13zm4.2 10h8.6a2.9 2.9 0 0 0 0-5.8h-8.6V23z" fill="#C6A15B"/>
+  <defs>
+    <clipPath id="box">
+      <rect x="2" y="2" width="44" height="44" rx="10"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#box)">
+    <rect x="2" y="2" width="44" height="44" fill="#0E2A47"/>
+    <rect x="2" y="2" width="44" height="7" fill="#C6A15B"/>
+    <rect x="13" y="15" width="5" height="23" fill="#C6A15B"/>
+    <path d="M18 15h8.2a7.6 7.6 0 0 1 0 15.2H18V15z" fill="#C6A15B"/>
+    <path d="M18 19h6a3.6 3.6 0 0 1 0 7.2H18V19z" fill="#0E2A47"/>
+    <path d="M20.2 27.2h5.2l7.6 10.8h-5.6l-7.2-10.8z" fill="#C6A15B"/>
+  </g>
 </svg>
